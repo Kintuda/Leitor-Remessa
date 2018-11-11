@@ -19,7 +19,7 @@ const checkDirectory = async time => {
   let result = new Array()
   files
     .filter(remessa => path.extname(remessa) === '.rem')
-    .map(async (location,i) => {
+    .map(async (location) => {
       let remessa = fs.readFileSync(path.join(basePath, location), 'latin1')
       let segmentos = remessa.replace(/[^\x00-\x7F]/g, '').split(OS.EOL)
       let cnab = null
