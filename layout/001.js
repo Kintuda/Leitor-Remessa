@@ -1,0 +1,37 @@
+module.exports = {
+    '240': {
+
+    },
+    '400': {
+        comando: { segmento: 1, posInicial: 109, posFinal: 110 },
+        agencia: { segmento: 1, posInicial: 18, posFinal: 21 },
+        agenciaDv: { segmento: 1, posInicial: 22, posFinal: 22 },
+        dataVencimento: { segmento: 1, posInicial: 121, posFinal: 126 },
+        nossoNumero: { segmento: 1, posInicial: 64, posFinal: 80 },
+        numeroConta: { segmento: 1, posInicial: 23, posFinal: 30 },
+        carteira: { segmento: 1, posInicial: 107, posFinal: 108 },
+        valorTitulo: { segmento: 1, posInicial: 127, posFinal: 139 },
+        docEspecie: { segmento: 1, posInicial: 148, posFinal: 149 },
+        aceiteTitulo: { segmento: 1, posInicial: 150, posFinal: 150 },
+        dataEmissao: { segmento: 1, posInicial: 151, posFinal: 156 },
+        instrucao1: { segmento: 1, posInicial: 157, posFinal: 158 },
+        instrucao2: { segmento: 1, posInicial: 159, posFinal: 160 },
+        jurosDiaValor: { segmento: 1, posInicial: 161, posFinal: 173 },
+        dataLimiteJurosDeMora: { segmento: 1, posInicial: 161, posFinal: 173 },
+        valorDesconto: { segmento: 1, posInicial: 180, posFinal: 192 },
+        valorAbatimento: { segmento: 1, posInicial: 206, posFinal: 218 },
+        cnpjPagador: { segmento: 1, posInicial: 221, posFinal: 234 },
+        nomePagador: { segmento: 1, posInicial: 235, posFinal: 271 },
+        enderecoPagador: { segmento: 1, posInicial: 275, posFinal: 314 },
+        bairroPagador: { segmento: 1, posInicial: 315, posFinal: 326 },
+        cepPagador: { segmento: 1, posInicial: 327, posFinal: 334 },
+        cidadePagador: { segmento: 1, posInicial: 335, posFinal: 349 },
+        ufPagador: { segmento: 1, posInicial: 350, posFinal: 351 },
+        ufPagador: { segmento: 1, posInicial: 350, posFinal: 351 },
+        diasParaProtesto: { segmento: 1, posInicial: 392, posFinal: 393 },
+        codigoMulta: { segmento: 2, posInicial: 4, posFinal: 4 },
+        dataInicioCobrancaMulta: { segmento: 2, posInicial: 5, posFinal: 10 },
+        valorMulta: { segmento: 2, posInicial: 11, posFinal: 22 },
+        qtdDiasRecebimentoAposVencimento: { segmento: 2, posInicial: 23, posFinal: 25 },
+    }
+}
