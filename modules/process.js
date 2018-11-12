@@ -11,7 +11,12 @@ const process = async (cnab, banco, file, name) => {
 }
 
 const getLayout = (cnab, banco) => {
-    const layout = require(`../layout/${banco}.js`)[cnab]
+    let layout = ''
+    if (!cnab === 240){
+        layout = require(`../layout/${banco}.js`)
+    }else{
+        layout = require(`../layout/240.js`)
+    }
     return layout
 }
 

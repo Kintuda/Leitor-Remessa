@@ -24,6 +24,7 @@ const checkDirectory = async time => {
       let segmentos = remessa.replace(/[^\x00-\x7F]/g, '').split(OS.EOL)
       let cnab = null
       let banco = null
+      console.log(segmentos[0].length);
       switch (segmentos[0].length) {
         case 401:
           cnab = 400
@@ -34,13 +35,13 @@ const checkDirectory = async time => {
           banco = segmentos[0].substring(0, 3)
           break
         default:
-          fs.unlinkSync(path.join(basePath, location))
+          // fs.unlinkSync(path.join(basePath, location))
           throw new Error('Numero de posições inválido')
       }
       result.push(process(cnab, banco, segmentos, path.join(basePath, location)))
-      fs.unlinkSync(path.join(basePath, location))
+      // fs.unlinkSync(path.join(basePath, location))
     })
-    return Promise.all(result)
+  return Promise.all(result)
 }
 
 const init = async time => {
@@ -49,9 +50,9 @@ const init = async time => {
     await timer(time)
     console.log('Inicializando processo')
     let res = await checkDirectory()
-    if(res){
-      if (config.saveFile){
-         fs.writeFileSync(`${savePath}/${new Date().toString()}.json`,JSON.stringify(res,null,2))
+    if (res) {
+      if (config.saveFile) {
+        fs.writeFileSync(`${savePath}/${new Date().toString()}.json`, JSON.stringify(res, null, 2))
       }
     }
     console.log('Finalizando processo')
@@ -61,7 +62,7 @@ const init = async time => {
     inicilize(error)
   }
 }
-let inicilize = err =>{
+let inicilize = err => {
   err ? console.log(err) : init(5000)
 }
 inicilize()
