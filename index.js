@@ -3,13 +3,14 @@ const fs = require('fs')
 const OS = require('os')
 const path = require('path')
 const process = require('./modules/process')
-const basePath = './remessas'
-const savePath = './result'
+const basePath = path.join(__dirname, 'remessas')
+const savePath = path.join(__dirname, 'result')
 const { promisify } = require('util')
 
 let config = {
   saveFile: true
 }
+
 const checkDirectory = async time => {
   let files = fs.readdirSync(basePath)
   if (files.length === 0) {
@@ -24,8 +25,11 @@ const checkDirectory = async time => {
       let segmentos = remessa.replace(/[^\x00-\x7F]/g, '').split(OS.EOL)
       let cnab = null
       let banco = null
-      console.log(segmentos[0].length);
       switch (segmentos[0].length) {
+        case 400:
+          cnab = 400
+          banco = segmentos[0].substring(76, 79)
+          break
         case 401:
           cnab = 400
           banco = segmentos[0].substring(76, 79)
@@ -34,12 +38,15 @@ const checkDirectory = async time => {
           cnab = 240
           banco = segmentos[0].substring(0, 3)
           break
+        case 240:
+          cnab = 240
+          banco = segmentos[0].substring(0, 3)
+          break
         default:
-          // fs.unlinkSync(path.join(basePath, location))
-          throw new Error('Numero de posições inválido')
+          throw new Error(`Arquivo ${location} possui um número de posições inválido`)
       }
       result.push(process(cnab, banco, segmentos, path.join(basePath, location)))
-      // fs.unlinkSync(path.join(basePath, location))
+      fs.unlinkSync(path.join(basePath, location))
     })
   return Promise.all(result)
 }
@@ -50,6 +57,7 @@ const init = async time => {
     await timer(time)
     console.log('Inicializando processo')
     let res = await checkDirectory()
+    console.log(res);
     if (res) {
       if (config.saveFile) {
         fs.writeFileSync(`${savePath}/${new Date().toString()}.json`, JSON.stringify(res, null, 2))
